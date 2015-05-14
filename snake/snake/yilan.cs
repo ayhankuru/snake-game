@@ -28,7 +28,7 @@ namespace snake
             yukleImg = Image.FromFile("snake.png");
             yon = "sag";
             Point p = new Point(0, 0);
-            for (int i = 0; i < 3; i++)
+			for (int i = 0; i < 8; i++)
             {
                 PictureBox picBox = new PictureBox();
                 picBox.Image = yukleImg;

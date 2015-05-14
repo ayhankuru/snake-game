@@ -39,8 +39,7 @@
             this.labelPuan = new System.Windows.Forms.Label();
             this.labelBitir = new System.Windows.Forms.Label();
             this.labelBasla = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.timer2 = new System.Windows.Forms.Timer(this.components);
+			this.timer1 = new System.Windows.Forms.Timer(this.components); 
             this.panelMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -156,11 +155,7 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // timer2
-            // 
-            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
-            // 
+			//  
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -193,7 +188,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Timer timer2;
     }
 }
 

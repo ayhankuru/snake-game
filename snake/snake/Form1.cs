@@ -49,10 +49,10 @@ namespace snake
             }
 
 
-            textBox2.Text = yil.HIZ.ToString();
+			textBox2.Text = yil.HIZ.ToString();
 
-            if (yil.DUVAR) checkBox1.Checked = true;
-            else checkBox1.Checked = false;
+			if (yil.DUVAR) checkBox1.Checked = true;
+			else checkBox1.Checked = false;
         
         }
 
@@ -204,8 +204,6 @@ namespace snake
                 timer1.Interval = yil.HIZ;
                 timer1.Start();
 
-                //timer2.Interval = 200;
-                //timer2.Start();
                
 
 
@@ -224,6 +222,16 @@ namespace snake
             int enOndeki = pb.Count - 1; 
             Point p = new Point();
             p = pb[enOndeki].Location;
+
+			for(int i=0; i < pb.Count-1; i++){
+
+				if (pb[enOndeki].Location.X == pb[i].Location.X && pb[enOndeki].Location.Y == pb[i].Location.Y ) {
+					oyun_bitir ();
+				}
+
+			}
+
+
             switch (yil.YON)
             {
                 case "sag":
@@ -319,31 +327,10 @@ namespace snake
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            oyun_basla();
+			oyun_basla();
         }
 
-        private void timer2_Tick(object sender, EventArgs e)
-        {
-            bool check = false;
-
-            foreach (Control item in panelYilan.Controls)
-            {
-                if (item is PictureBox)
-                {
-                    if ("Yem" == item.Tag)
-                    {
-                        check = true;
-                    }
-                }
-
-            }
-
-            if (!check)
-            {
-                yem();
-            }
-
-        }
+        
 
         
 
