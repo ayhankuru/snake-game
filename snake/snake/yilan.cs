@@ -36,8 +36,7 @@ namespace snake
                 picBox.Location = p;
                 pb.Add(picBox);
                 p.X += 20;
-            }
-            aktif = true;
+            } 
         }
 
         public List<PictureBox> PB

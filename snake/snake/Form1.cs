@@ -38,7 +38,8 @@ namespace snake
         {
             this.Cursor = Cursors.Default;
         }
-        public void oyun_basla(){
+        private void oyun_basla()
+        {
 
             yil = new yilan();
             panelYilan.Controls.Clear();
@@ -56,7 +57,8 @@ namespace snake
         
         }
 
-        public void oyun_bitir() {
+        private void oyun_bitir()
+        {
 
             timer1.Stop(); 
             string isim = textBox1.Text;
@@ -68,7 +70,7 @@ namespace snake
 
         }
 
-        public void yem()
+        private void yem()
         {
             int width = panelYilan.Width;
             int height = panelYilan.Height;
@@ -93,7 +95,7 @@ namespace snake
 
         }
 
-        public int random_sayi()
+        private int random_sayi()
         {
             rnd = new Random();
             List<PictureBox> pb = yil.PB;
@@ -295,22 +297,22 @@ namespace snake
         {
             if (yil.AKTIF)
             {
-                switch(keyData)
+                switch (keyData)
                 {
                     case Keys.Left:
-                        if(!yil.YON.Equals("sag"))
+                        if (!yil.YON.Equals("sag"))
                             yil.YON = "sol";
                         break;
                     case Keys.Right:
-                        if(!yil.YON.Equals("sol"))
+                        if (!yil.YON.Equals("sol"))
                             yil.YON = "sag";
                         break;
                     case Keys.Down:
-                        if(!yil.YON.Equals("yukari"))
+                        if (!yil.YON.Equals("yukari"))
                             yil.YON = "asagi";
                         break;
                     default:
-                        if(!yil.YON.Equals("asagi"))
+                        if (!yil.YON.Equals("asagi"))
                             yil.YON = "yukari";
                         break;
                 }
@@ -327,13 +329,15 @@ namespace snake
 
         private void Form1_Load(object sender, EventArgs e)
         {
-			oyun_basla();
+            oyun_basla();
         }
 
-        
+         
 
-        
+         
 
+           
+             
        
     }
 }
