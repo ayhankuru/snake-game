@@ -39,7 +39,7 @@
             this.labelPuan = new System.Windows.Forms.Label();
             this.labelBitir = new System.Windows.Forms.Label();
             this.labelBasla = new System.Windows.Forms.Label();
-			this.timer1 = new System.Windows.Forms.Timer(this.components); 
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panelMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -155,7 +155,7 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-			//  
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
