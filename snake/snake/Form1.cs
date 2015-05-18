@@ -78,7 +78,7 @@ namespace snake
 			oyun_basla();
 		}
 
-        private void yem()
+		private void yem()
         {
             int width = panelYilan.Width;
             int height = panelYilan.Height;
@@ -99,7 +99,7 @@ namespace snake
 
              panelYilan.Controls.Add(picBox);
              
-        
+
 
         }
 
@@ -241,6 +241,8 @@ namespace snake
 
 			}
 
+			 
+
 
             switch (yil.YON)
             {
@@ -262,6 +264,9 @@ namespace snake
                 pb[i].Location = pb[i + 1].Location;
 
             pb[enOndeki].Location = p;
+
+
+			labelPuan.Text = yil.Score.ToString ();
 
             if (yil.DUVAR)
             {
@@ -297,6 +302,41 @@ namespace snake
             
             }
             
+
+
+			if (yil.YEM) {
+				yem ();
+				yil.YEM = false;
+
+			}
+
+			if (!yil.YEM) {
+				foreach(Control c in panelYilan.Controls)
+				{
+					if(c is PictureBox)
+					{
+						var l = c as PictureBox;
+						if (l.Tag != null && l.Tag.ToString () == "Yem") {
+							if (l.Location.Y == pb [enOndeki].Location.Y && l.Location.X == pb [enOndeki].Location.X) {
+								l.Dispose ();
+
+								Image yukleImg = Image.FromFile("snake.png");
+								Point newp = new Point(pb[enOndeki].Location.X+20, pb [enOndeki].Location.Y);
+								PictureBox newbox = new PictureBox();
+								newbox.Image = yukleImg;
+								newbox.Size = yukleImg.Size;
+
+								newbox.Location = newp;
+								yil.PB.Add (newbox);
+								yil.Score = 10;		
+								yil.YEM = true;
+
+							}
+						}
+
+					}
+				}
+			}
         }
 
         #region keydownKontrol

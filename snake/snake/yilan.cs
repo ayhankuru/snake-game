@@ -23,6 +23,8 @@ namespace snake
 
         private int hiz = 1000;
 
+		private int score = 0;
+
         public yilan()
         {
             yukleImg = Image.FromFile("snake.png");
@@ -74,6 +76,12 @@ namespace snake
             get { return hiz; }
             set { hiz = value; }
         }
+
+		public int Score
+		{
+			get{ return score; }
+			set{ score += value; }
+		}
 
         public void HizDegis(int sayi)
         {

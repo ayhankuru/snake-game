@@ -2,7 +2,8 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="snake/Form1.cs">
     <Files>
-      <File FileName="snake/Form1.cs" Line="50" Column="4" />
+      <File FileName="snake/Form1.cs" Line="338" Column="6" />
+      <File FileName="snake/yilan.cs" Line="38" Column="37" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
