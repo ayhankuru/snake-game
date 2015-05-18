@@ -52,7 +52,7 @@ namespace snake
             set { yon = value; }
         }
 
-        public bool AKTIF
+		public bool AKTIF
         {
             get { return aktif; }
             set { aktif = value; }

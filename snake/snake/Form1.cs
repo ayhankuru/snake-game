@@ -17,7 +17,7 @@ namespace snake
         {
             InitializeComponent();
         }
-        yilan yil;
+		yilan yil;
         Random rnd;
         private void labelBasla_MouseHover(object sender, EventArgs e)
         {
@@ -40,8 +40,8 @@ namespace snake
         }
         public void oyun_basla(){
 
-            yil = new yilan();
-            panelYilan.Controls.Clear();
+			yil = new yilan();
+			panelYilan.Controls.Clear();
             List<PictureBox> pb = yil.PB;
             for (int i = 0; i < pb.Count; i++)
             {
@@ -53,6 +53,9 @@ namespace snake
 
 			if (yil.DUVAR) checkBox1.Checked = true;
 			else checkBox1.Checked = false;
+
+
+
         
         }
 
@@ -64,9 +67,15 @@ namespace snake
             //scoreyaz(isim,yil.SCORE);
             textBox1.Text = "";
             oyun_basla();
-            yil.AKTIF = false;
+			yil.AKTIF = false;
 
         }
+
+
+		private void Form1_Load(object sender, EventArgs e)
+		{
+			oyun_basla();
+		}
 
         public void yem()
         {
@@ -200,7 +209,7 @@ namespace snake
             if (!String.IsNullOrEmpty(textBox1.Text) && !String.IsNullOrEmpty(textBox2.Text))
             {
                 yil.HizDegis(Convert.ToInt32(textBox2.Text));
-                yil.AKTIF = true;
+				yil.AKTIF = true;
                 timer1.Interval = yil.HIZ;
                 timer1.Start();
 
@@ -293,7 +302,7 @@ namespace snake
         // formun kontrollerinden keyPress özelliğinin alınması
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            if (yil.AKTIF)
+			if (yil.AKTIF)
             {
                 switch(keyData)
                 {
@@ -325,10 +334,6 @@ namespace snake
             oyun_bitir();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-			oyun_basla();
-        }
 
         
 
