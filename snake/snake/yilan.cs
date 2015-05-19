@@ -11,8 +11,9 @@ namespace snake
 {
     class yilan
     {
-        private string yon;
+
         List<PictureBox> pb = new List<PictureBox>();
+
         private Image yukleImg;
 
         private bool aktif = false;
@@ -25,10 +26,11 @@ namespace snake
 
 		private int score = 0;
 
+		private string yon;
+
         public yilan()
         {
             yukleImg = Image.FromFile("snake.png");
-            yon = "sag";
             Point p = new Point(0, 0);
 			for (int i = 0; i < 8; i++)
             {
