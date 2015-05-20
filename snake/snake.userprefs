@@ -2,9 +2,15 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="snake/Form1.cs">
     <Files>
-      <File FileName="snake/Form1.cs" Line="213" Column="21" />
-      <File FileName="snake/yilan.cs" Line="29" Column="22" />
+      <File FileName="snake/Form1.cs" Line="86" Column="24" />
     </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State>
+          <Value>yil.YON</Value>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

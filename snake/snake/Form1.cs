@@ -252,53 +252,6 @@ namespace snake
 			}
 
 
-			// yem true ise yem oluşturur
-
-			if (yil.YEM) {
-				yem ();
-				yil.YEM = false;
-
-			}
-
-			// yem false yani yem yenmediyse ve oluşturulmuşsa
-			// picturebox tag'ı yem olan ile yılanın başını kontrol et 
-			// eşitse yılana bir picturebox attır ve diziye ekle
-
-			 
-				foreach(Control c in panelYilan.Controls)
-				{
-					if(c is PictureBox)
-					{
-						var l = c as PictureBox;
-						if (l.Tag != null && l.Tag.ToString () == "Yem") {
-							if (l.Location.Y == pb [enOndeki].Location.Y && l.Location.X == pb [enOndeki].Location.X) {
-
-								panelYilan.Controls.Remove (l);
-
-								Image yukleImg = Image.FromFile("snake.png");
-							Point newp = new Point(pb[pb.Count-1].Location.X+20, pb [pb.Count-1].Location.Y+20);
-								PictureBox newbox = new PictureBox();
-								newbox.Image = yukleImg;
-								newbox.Size = yukleImg.Size;
-
-								newbox.Location = newp;
-
-								panelYilan.Controls.Add (newbox);
-								pb.Add (newbox);
-
-
-								yil.Score = 10;		
-								yil.YEM = true;
-
-							}
-						}
-					}
-			
-				yil.PB = pb;
-			}
-
-
-
 			// yılan dizisi konumları değiştirme
 
 			for (int i = 0; i < enOndeki; i++)
@@ -307,24 +260,7 @@ namespace snake
 			pb[enOndeki].Location = p;
 
 
-			// yılan kendi kendini yemişmi
 
-			/*for(int i=0; i < pb.Count-1; i++){
-
-				if (pb[enOndeki].Location.X == pb[i].Location.X && pb[enOndeki].Location.Y == pb[i].Location.Y ) {
-					oyun_bitir ();
-				}
-
-			}*/
-
-
-			// score her intervalde güncelleniyor        
-
-
-			labelPuan.Text = yil.Score.ToString ();
-
-
-			// duvardan geçiş
 
 			if (yil.DUVAR)
 			{
@@ -361,6 +297,43 @@ namespace snake
 			}
 
 
+			if (yil.YEM) {
+				yem ();
+				yil.YEM = false;
+
+			}
+
+			foreach (Control c in panelYilan.Controls) {
+				if (c is PictureBox) {
+					var l = c as PictureBox;
+					if (l.Tag != null && l.Tag.ToString () == "Yem") {
+						if (l.Location.Y == pb [enOndeki].Location.Y && l.Location.X == pb [enOndeki].Location.X) {
+
+							panelYilan.Controls.Remove (l);
+
+							Image yukleImg = Image.FromFile ("snake.png");
+							Point newp = new Point (pb [pb.Count-1].Location.X, pb [pb.Count-1].Location.Y);
+							PictureBox newbox = new PictureBox ();
+							newbox.Image = yukleImg;
+							newbox.Size = yukleImg.Size;
+
+							newbox.Location = newp;
+
+							pb.Add (newbox);
+
+
+							yil.Score = 10;		
+							yil.YEM = true;
+
+						}
+					}
+				}
+			}
+
+
+			labelPuan.Text = yil.Score.ToString ();
+
+			yil.PB = pb;
 
 		}
 

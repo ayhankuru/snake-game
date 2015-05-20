@@ -22,7 +22,7 @@ namespace snake
 
         private bool yem = true;
 
-		private int hiz = 500;
+		private int hiz = 200;
 
 		private int score = 0;
 
