@@ -297,6 +297,13 @@ namespace snake
 			}
 
 
+			for(int i=0; i < pb.Count-1; i++){
+				if (pb[enOndeki].Location.X == pb[i].Location.X && pb[enOndeki].Location.Y == pb[i].Location.Y ) {
+					oyun_bitir ();
+				}
+			}
+
+
 			if (yil.YEM) {
 				yem ();
 				yil.YEM = false;
@@ -320,6 +327,7 @@ namespace snake
 							newbox.Location = newp;
 
 							pb.Add (newbox);
+							panelYilan.Controls.Add (newbox);
 
 
 							yil.Score = 10;		
