@@ -39,8 +39,7 @@ namespace snake
 			this.Cursor = Cursors.Default;
 		}
 		private void oyun_basla()
-		{
-
+		{	
 			yil = new yilan();
 			panelYilan.Controls.Clear();
 			List<PictureBox> pb = yil.PB;
@@ -65,8 +64,7 @@ namespace snake
 
 			timer1.Stop(); 
 			string isim = textBox1.Text;
-
-			//scoreyaz(isim,yil.SCORE);
+			scoreyaz(isim,yil.SCORE);
 			textBox1.Text = "";
 			oyun_basla();
 			yil.AKTIF = false;
@@ -88,7 +86,7 @@ namespace snake
 
 
 
-			Image yukleImg = Image.FromFile("snake.png");
+			Image yukleImg = Image.FromFile("yem.png");
 
 			Point p = new Point(x, y);
 			PictureBox picBox = new PictureBox();
@@ -214,9 +212,6 @@ namespace snake
 				yil.AKTIF = true;
 				timer1.Interval = yil.HIZ;
 				timer1.Start();
-
-
-
 
 			}
 			else {
@@ -370,7 +365,7 @@ namespace snake
 						yil.YON = "yukari";
 					break;
 				} 
-			} 
+			}
 			return false;
 		}
 		#endregion

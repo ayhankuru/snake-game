@@ -1,7 +1,1 @@
 /home/cobaimelan/proje/snake/snake/snake/obj/x86/Debug/.NETFramework,Version=v4.0,Profile=Client.AssemblyAttribute.cs
-/home/cobaimelan/proje/snake/snake/snake/obj/x86/Debug/snake.Form1.resources
-/home/cobaimelan/proje/snake/snake/snake/obj/x86/Debug/snake.Properties.Resources.resources
-/home/cobaimelan/proje/snake/snake/snake/bin/Debug/snake.exe.mdb
-/home/cobaimelan/proje/snake/snake/snake/bin/Debug/snake.exe
-/home/cobaimelan/proje/snake/snake/snake/obj/x86/Debug/snake.exe
-/home/cobaimelan/proje/snake/snake/snake/obj/x86/Debug/snake.exe.mdb
