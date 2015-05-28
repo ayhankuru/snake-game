@@ -45,6 +45,7 @@
             // 
             // panelYilan
             // 
+            this.panelYilan.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panelYilan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelYilan.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelYilan.Location = new System.Drawing.Point(126, 0);
@@ -54,7 +55,7 @@
             // 
             // panelMenu
             // 
-            this.panelMenu.BackColor = System.Drawing.Color.YellowGreen;
+            this.panelMenu.BackColor = System.Drawing.Color.Gray;
             this.panelMenu.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelMenu.Controls.Add(this.checkBox1);
             this.panelMenu.Controls.Add(this.textBox2);
@@ -65,6 +66,7 @@
             this.panelMenu.Controls.Add(this.labelBitir);
             this.panelMenu.Controls.Add(this.labelBasla);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelMenu.ForeColor = System.Drawing.Color.Black;
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(128, 400);
@@ -73,16 +75,17 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(13, 275);
+            this.checkBox1.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox1.Location = new System.Drawing.Point(10, 252);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(103, 17);
+            this.checkBox1.Size = new System.Drawing.Size(57, 18);
             this.checkBox1.TabIndex = 7;
-            this.checkBox1.Text = "Duvardan Geçiş";
+            this.checkBox1.Text = "Duvar";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(13, 138);
+            this.textBox2.Location = new System.Drawing.Point(10, 197);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 20);
             this.textBox2.TabIndex = 6;
@@ -91,24 +94,26 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 102);
+            this.label2.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label2.Location = new System.Drawing.Point(12, 168);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(22, 13);
+            this.label2.Size = new System.Drawing.Size(23, 14);
             this.label2.TabIndex = 5;
             this.label2.Text = "Hız";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 181);
+            this.label1.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label1.Location = new System.Drawing.Point(10, 102);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.Size = new System.Drawing.Size(41, 14);
             this.label1.TabIndex = 4;
             this.label1.Text = "Adınız";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(10, 229);
+            this.textBox1.Location = new System.Drawing.Point(10, 130);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 3;
@@ -116,22 +121,23 @@
             // labelPuan
             // 
             this.labelPuan.AutoSize = true;
-            this.labelPuan.Font = new System.Drawing.Font("Script MT Bold", 17F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPuan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.labelPuan.BackColor = System.Drawing.Color.Gray;
+            this.labelPuan.Font = new System.Drawing.Font("Arial", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPuan.ForeColor = System.Drawing.Color.Black;
             this.labelPuan.Location = new System.Drawing.Point(42, 48);
             this.labelPuan.Name = "labelPuan";
-            this.labelPuan.Size = new System.Drawing.Size(24, 28);
+            this.labelPuan.Size = new System.Drawing.Size(25, 27);
             this.labelPuan.TabIndex = 2;
             this.labelPuan.Text = "0";
             // 
             // labelBitir
             // 
             this.labelBitir.AutoSize = true;
-            this.labelBitir.Font = new System.Drawing.Font("Script MT Bold", 17F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelBitir.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labelBitir.Location = new System.Drawing.Point(10, 349);
+            this.labelBitir.Font = new System.Drawing.Font("Arial", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBitir.ForeColor = System.Drawing.Color.Black;
+            this.labelBitir.Location = new System.Drawing.Point(10, 341);
             this.labelBitir.Name = "labelBitir";
-            this.labelBitir.Size = new System.Drawing.Size(73, 28);
+            this.labelBitir.Size = new System.Drawing.Size(71, 27);
             this.labelBitir.TabIndex = 1;
             this.labelBitir.Text = "BİTİR";
             this.labelBitir.Click += new System.EventHandler(this.labelBitir_Click);
@@ -141,11 +147,11 @@
             // labelBasla
             // 
             this.labelBasla.AutoSize = true;
-            this.labelBasla.Font = new System.Drawing.Font("Script MT Bold", 17F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelBasla.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labelBasla.Location = new System.Drawing.Point(10, 309);
+            this.labelBasla.Font = new System.Drawing.Font("Arial", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBasla.ForeColor = System.Drawing.Color.Black;
+            this.labelBasla.Location = new System.Drawing.Point(10, 291);
             this.labelBasla.Name = "labelBasla";
-            this.labelBasla.Size = new System.Drawing.Size(89, 28);
+            this.labelBasla.Size = new System.Drawing.Size(92, 27);
             this.labelBasla.TabIndex = 0;
             this.labelBasla.Text = "BAŞLA";
             this.labelBasla.Click += new System.EventHandler(this.labelBasla_Click);

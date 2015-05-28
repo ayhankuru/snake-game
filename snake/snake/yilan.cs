@@ -18,13 +18,9 @@ namespace snake
 
         private bool aktif = false;
 
-        private bool duvar = true;
-
         private bool yem = true;
 
-		private int hiz = 200;
-
-		private int score = 0;
+		private int puan = 0;
 
 		private string yon;
 
@@ -32,7 +28,7 @@ namespace snake
         {
             yukleImg = Image.FromFile("snake.png");
             Point p = new Point(0, 0);
-			for (int i = 0; i < 8; i++)
+			for (int i = 0; i < 3; i++)
             {
                 PictureBox picBox = new PictureBox();
                 picBox.Image = yukleImg;
@@ -40,7 +36,9 @@ namespace snake
                 picBox.Location = p;
                 pb.Add(picBox);
                 p.X += 20;
-            } 
+            }
+
+            yon = "sag";
         }
 
         public List<PictureBox> PB
@@ -61,34 +59,19 @@ namespace snake
             set { aktif = value; }
         }
 
-        public bool DUVAR
-        {
-            get { return duvar; }
-            set { duvar = value; }
-        }
-        
+     
         public bool YEM
         {
             get { return yem; }
             set { yem = value; }
         }
 
-        public int HIZ
-        {
-            get { return hiz; }
-            set { hiz = value; }
-        }
-
-		public int Score
+      
+		public int PUAN
 		{
-			get{ return score; }
-			set{ score += value; }
+            get { return puan; }
+            set { puan += value; }
 		}
 
-        public void HizDegis(int sayi)
-        {
-            hiz=sayi;
-
-        }
     }
 }

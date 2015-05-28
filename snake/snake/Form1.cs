@@ -17,8 +17,13 @@ namespace snake
 		{
 			InitializeComponent();
 		}
-		yilan yil;
-		Random rnd; 
+        yilan yil;
+		Random rnd;
+        int bonussay=0;
+        int bonuscount = 0;
+        bool bonus = false;
+        int hiz = 200;
+        bool duvar = true;
 		private void labelBasla_MouseHover(object sender, EventArgs e)
 		{
 			this.Cursor = Cursors.Hand;
@@ -38,21 +43,27 @@ namespace snake
 		{
 			this.Cursor = Cursors.Default;
 		}
-		private void oyun_basla()
-		{	
-			yil = new yilan();
-			panelYilan.Controls.Clear();
-			List<PictureBox> pb = yil.PB;
-			for (int i = 0; i < pb.Count; i++)
-			{
-				panelYilan.Controls.Add(pb[i]);
-			}
+		private void oyun_yenile()
+		{
+            if (yil == null)
+                yil = new yilan();
 
+            panelYilan.Controls.Clear();
+            List<PictureBox> pb = yil.PB;
+            for (int i = 0; i < pb.Count; i++)
+            {
+                panelYilan.Controls.Add(pb[i]);
+            }
 
-			textBox2.Text = yil.HIZ.ToString();
+			textBox2.Text = hiz.ToString();
 
-			if (yil.DUVAR) checkBox1.Checked = true;
-			else checkBox1.Checked = false;
+            if (duvar)
+            {
+                checkBox1.Checked = true;
+            }
+            else {
+                checkBox1.Checked = false;
+            }
 
 
 
@@ -60,39 +71,58 @@ namespace snake
 		}
 
 		private void oyun_bitir()
-		{
-
-			timer1.Stop(); 
+		{   
+            
+			timer1.Stop();
+            timer1.Enabled = false;
 			string isim = textBox1.Text;
-			scoreyaz(isim,yil.SCORE);
-			textBox1.Text = "";
-			oyun_basla();
-			yil.AKTIF = false;
+			puan_kaydet(isim,yil.PUAN);
+            yil = null;
+            oyun_yenile();
 
 		}
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
-			oyun_basla();
+            oyun_yenile();
 		}
 
-		private void yem()
+		private void yem(int tur)
 		{
+            rnd = new Random();
 			int width = panelYilan.Width;
 			int height = panelYilan.Height;
 
-			int x = random_sayi();
-			int y = random_sayi();
+            int x = rnd.Next(1, 20) * 20;
+            int y = rnd.Next(1, 20) * 20;
 
 
+            PictureBox picBox = new PictureBox();
 
-			Image yukleImg = Image.FromFile("yem.png");
+            if (tur == 1)
+            {
+                Image yukleImg = Image.FromFile("yem.png");
+                picBox.Image = yukleImg;
+                picBox.Size = yukleImg.Size;
+            }
+            else {
+                Image yukleImg = Image.FromFile("yem2.png");
+                picBox.Image = yukleImg;
+                picBox.Size = yukleImg.Size;
+            }
 
-			Point p = new Point(x, y);
-			PictureBox picBox = new PictureBox();
-			picBox.Image = yukleImg;
-			picBox.Size = yukleImg.Size;
-			picBox.Tag = "Yem";
+
+			Point p = new Point(x, y);		
+			
+
+            if (tur == 1)
+            {
+                picBox.Tag = "Yem";
+            }
+            else {
+                picBox.Tag = "BonusYem";
+            }
+
 			picBox.Location = p;
 
 			panelYilan.Controls.Add(picBox);
@@ -101,121 +131,71 @@ namespace snake
 
 		}
 
-		private int random_sayi()
-		{
-			rnd = new Random();
-			List<PictureBox> pb = yil.PB;
-			List<int> dizi = new List<int>();
-			bool check=true;
-			int numb, lo=0;
-			for (int i = 0; i < pb.Count; i++)
-			{
-				dizi.Add(pb[i].Location.X);
-				dizi.Add(pb[i].Location.Y);
-			}
+        public void puan_kaydet(string isim, int puan)
+        {
+            
+            string tmp;
+            string satir = null;
+            bool sil = false;
+            int silincek = 0;
+            string[] dizi;
+            
 
-			int[] blacklist = dizi.ToArray();
-
-			numb = rnd.Next(1, 20) * 20;
-
-			while (check) {
-
-				if (blacklist[lo] == numb)
-				{
-					if (lo == blacklist.Count()) {
-						numb = rnd.Next(1, 20) * 20;
-						lo = 0;
-					}
-				}
-				else {
-					check=false;
-				}
-
-				lo++;
-			}
+            StreamReader rdr = TextGuncelleme.dosyadanOku("puan.txt");
+            int k=0;
 
 
-			return numb;
-		}
+                while (!String.IsNullOrEmpty(tmp = rdr.ReadLine()))
+                {
+                    dizi = tmp.Split(':');
 
-		public void scoreyaz(string isim,int puan) {
+                    if (dizi[0] == isim)
+                    {
 
+                        silincek = k;
+                        sil = true;
+                        satir = isim + ":" + puan.ToString();
+                    }
+                    else
+                    {
 
-			StreamReader rdr = txtOkuYaz.dosyadanOku("score.txt");
-			string tmp;
-
-			string[] yeniDizi;
-			string dump ="";
-			string rep = "";
-
-			string readText = File.ReadAllText("score.txt");
-
-			if (String.IsNullOrWhiteSpace(readText))
-			{
-				rep = isim + ":" + puan.ToString() + ":0";
-				dump += rep + System.Environment.NewLine;
-
-				txtOkuYaz.okumayiKapat();
-				txtOkuYaz.dosyaEkle("score.txt", dump);
-			}
-			else {
-				while (!String.IsNullOrEmpty(tmp = rdr.ReadLine()))
-				{
-					yeniDizi = tmp.Split(':');
-
-					if (yeniDizi[0] == isim)
-					{
-						yeniDizi[1] = puan.ToString();
-
-						if (puan > Convert.ToInt32(yeniDizi[2]))
-						{
-							yeniDizi[2] = puan.ToString();
-						}
-
-						rep = string.Join(":", Array.ConvertAll(yeniDizi, item => item.ToString()));
-
-						dump += rep + System.Environment.NewLine;
-					}
-					else
-					{
-						rep = isim + ":" + puan.ToString() + ":0";
-						dump += rep + System.Environment.NewLine;
-					}
-
-				}
-				txtOkuYaz.okumayiKapat();
-				txtOkuYaz.dosyaEkle("score.txt", dump);
-
-			}
+                        satir = isim + ":" + puan.ToString();
+                    }
+                    k++;
+                }
 
 
+             if (k == 0) {
+                    satir = isim + ":" + puan.ToString();
+              }
+             TextGuncelleme.okumayiKapat();
+             if (sil) {
+                 TextGuncelleme.secileniSil("puan.txt", silincek);
+             }
 
-
-
-
-		}
+             TextGuncelleme.dosyaYaz("puan.txt", satir);
+             
+            
+        }
 
 		private void labelBasla_Click(object sender, EventArgs e)
 		{
-
-			if (checkBox1.Checked)
-				yil.DUVAR = true;
-			else
-				yil.DUVAR = false;
-
-
-
-			if (!String.IsNullOrEmpty(textBox1.Text) && !String.IsNullOrEmpty(textBox2.Text))
+            if (!String.IsNullOrEmpty(textBox1.Text) && !String.IsNullOrEmpty(textBox2.Text))
 			{
-				yil.HizDegis(Convert.ToInt32(textBox2.Text));
-				yil.YON = "sag";
+                if (checkBox1.Checked)
+                {
+                    duvar = true;
+                }
+                else {
+                    duvar = false;
+                }
+
+                hiz = Convert.ToInt32(textBox2.Text);
+                timer1.Enabled = true;
 				yil.AKTIF = true;
-				timer1.Interval = yil.HIZ;
+                timer1.Interval = hiz;
 				timer1.Start();
 
-			}
-			else {
-				MessageBox.Show("Bütün alanların dolu olduğundan emin olun");
 			}
 
 
@@ -247,7 +227,6 @@ namespace snake
 			}
 
 
-			// yılan dizisi konumları değiştirme
 
 			for (int i = 0; i < enOndeki; i++)
 				pb[i].Location = pb[i + 1].Location;
@@ -257,7 +236,7 @@ namespace snake
 
 
 
-			if (yil.DUVAR)
+			if (duvar)
 			{
 
 
@@ -295,47 +274,146 @@ namespace snake
 			for(int i=0; i < pb.Count-1; i++){
 				if (pb[enOndeki].Location.X == pb[i].Location.X && pb[enOndeki].Location.Y == pb[i].Location.Y ) {
 					oyun_bitir ();
+                    return;
 				}
 			}
 
 
 			if (yil.YEM) {
-				yem ();
 				yil.YEM = false;
-
+                yem(1);
 			}
 
-			foreach (Control c in panelYilan.Controls) {
-				if (c is PictureBox) {
-					var l = c as PictureBox;
-					if (l.Tag != null && l.Tag.ToString () == "Yem") {
-						if (l.Location.Y == pb [enOndeki].Location.Y && l.Location.X == pb [enOndeki].Location.X) {
-
-							panelYilan.Controls.Remove (l);
-
-							Image yukleImg = Image.FromFile ("snake.png");
-							Point newp = new Point (pb [pb.Count-1].Location.X, pb [pb.Count-1].Location.Y);
-							PictureBox newbox = new PictureBox ();
-							newbox.Image = yukleImg;
-							newbox.Size = yukleImg.Size;
-
-							newbox.Location = newp;
-
-							pb.Add (newbox);
-							panelYilan.Controls.Add (newbox);
+            if(bonussay  >= 4 && !bonus){
+                bonus = true;
+                yem(0);
+            }
 
 
-							yil.Score = 10;		
-							yil.YEM = true;
+            if (!yil.YEM) {
 
-						}
-					}
-				}
-			}
+                foreach (Control c in panelYilan.Controls)
+                {
+                    if (c is PictureBox)
+                    {
+                        var l = c as PictureBox;
+                        if (l.Tag != null && l.Tag.ToString() == "Yem" && l.Location.Y == pb[enOndeki].Location.Y && l.Location.X == pb[enOndeki].Location.X)
+                        {
+                                panelYilan.Controls.Remove(l);
+
+                                Image yukleImg = Image.FromFile("snake.png");
+                                Point newp = new Point(pb[pb.Count - 1].Location.X, pb[pb.Count - 1].Location.Y);
+                                PictureBox newbox = new PictureBox();
+                                newbox.Image = yukleImg;
+                                newbox.Size = yukleImg.Size;
+
+                                newbox.Location = newp;
+
+                                pb.Add(newbox);
+                                panelYilan.Controls.Add(newbox);
 
 
-			labelPuan.Text = yil.Score.ToString ();
+                                yil.PUAN = 10;
+                                yil.YEM = true;
 
+                                if (!bonus)
+                                {
+                                    bonussay += 1;
+                                }
+
+
+                                if (hiz > 130)
+                                {
+                                    hiz = hiz - 5;
+                                    timer1.Interval = hiz;
+                                }
+                                else
+                                {
+                                    timer1.Interval = hiz;
+                                }
+
+                            
+                        }
+
+                        if (l.Tag != null && l.Tag.ToString() == "BonusYem" && l.Location.Y == pb[enOndeki].Location.Y && l.Location.X == pb[enOndeki].Location.X)
+                        {
+                            panelYilan.Controls.Remove(l);
+
+                            Image yukleImg = Image.FromFile("snake.png");
+                            Point newp = new Point(pb[pb.Count - 1].Location.X, pb[pb.Count - 1].Location.Y);
+                            PictureBox newbox = new PictureBox();
+                            newbox.Image = yukleImg;
+                            newbox.Size = yukleImg.Size;
+
+                            newbox.Location = newp;
+
+                            pb.Add(newbox);
+                            panelYilan.Controls.Add(newbox);
+
+
+                            yil.PUAN = 30;
+
+
+                            bonus = false;
+                            bonuscount = 0;
+                            bonussay = 0;
+                            if (hiz > 130)
+                            {
+                                hiz = hiz - 5;
+                                timer1.Interval = hiz;
+                            }
+                            else
+                            {
+                                timer1.Interval = hiz;
+                            }
+
+                        }
+                        
+                       
+
+                    }
+                    
+                } 
+                
+            
+            
+            }
+
+            if (bonus) {
+
+                if (bonuscount == 60)
+                {
+
+                    foreach (Control c in panelYilan.Controls)
+                    {
+                        if (c is PictureBox)
+                        {
+                            var l = c as PictureBox;
+                            if (l.Tag != null && l.Tag.ToString() == "BonusYem")
+                            {
+                                panelYilan.Controls.Remove(l);
+
+                                bonus = false;
+                                bonuscount = 0;
+                                bonussay = 0;
+                            }
+                        }
+                    }
+
+
+                }
+                else
+                {
+                    bonuscount += 1;
+                }
+
+            
+            }
+
+            
+
+
+			labelPuan.Text = yil.PUAN.ToString ();
 			yil.PB = pb;
 
 		}
@@ -344,29 +422,29 @@ namespace snake
 		// formun kontrollerinden keyPress özelliğinin alınması
 		protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
 		{
-			if (yil.AKTIF)
-			{
-				switch(keyData)
-				{
-				case Keys.Left:
-					if(!yil.YON.Equals("sag"))
-						yil.YON = "sol";
-					break;
-				case Keys.Right:
-					if(!yil.YON.Equals("sol"))
-						yil.YON = "sag";
-					break;
-				case Keys.Down:
-					if(!yil.YON.Equals("yukari"))
-						yil.YON = "asagi";
-					break;
-				case Keys.Up:
-					if(!yil.YON.Equals("asagi"))
-						yil.YON = "yukari";
-					break;
-				} 
-			}
-			return false;
+            if (yil.AKTIF)
+            {
+                switch (keyData)
+                {
+                    case Keys.Left:
+                        if (!yil.YON.Equals("sag"))
+                            yil.YON = "sol";
+                        break;
+                    case Keys.Right:
+                        if (!yil.YON.Equals("sol"))
+                            yil.YON = "sag";
+                        break;
+                    case Keys.Down:
+                        if (!yil.YON.Equals("yukari"))
+                            yil.YON = "asagi";
+                        break;
+                    case Keys.Up:
+                        if (!yil.YON.Equals("asagi"))
+                            yil.YON = "yukari";
+                        break;
+                }
+            }
+            return false;
 		}
 		#endregion
 
@@ -374,6 +452,9 @@ namespace snake
 		{
 			oyun_bitir();
 		}
+
+      
+
 
 
 	}

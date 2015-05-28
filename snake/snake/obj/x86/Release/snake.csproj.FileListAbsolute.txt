@@ -1,0 +1,15 @@
+C:\Users\Ayhan\Desktop\snake-game\snake\snake\obj\x86\Release\snake.Form1.resources
+C:\Users\Ayhan\Desktop\snake-game\snake\snake\obj\x86\Release\snake.Properties.Resources.resources
+C:\Users\Ayhan\Desktop\snake-game\snake\snake\obj\x86\Release\snake.csproj.GenerateResource.Cache
+C:\Users\Ayhan\Desktop\snake-game\snake\snake\obj\x86\Release\snake.csprojResolveAssemblyReference.cache
+C:\Users\Ayhan\Desktop\snake-game\snake\snake\bin\Release\snake.exe
+C:\Users\Ayhan\Desktop\snake-game\snake\snake\bin\Release\snake.pdb
+C:\Users\Ayhan\Desktop\snake-game\snake\snake\obj\x86\Release\snake.exe
+C:\Users\Ayhan\Desktop\snake-game\snake\snake\obj\x86\Release\snake.pdb
+C:\Users\Ayhan\Desktop\yılan oyunu\snake\snake\obj\x86\Release\snake.exe
+C:\Users\Ayhan\Desktop\yılan oyunu\snake\snake\obj\x86\Release\snake.pdb
+C:\Users\Ayhan\Desktop\yılan oyunu\snake\snake\bin\Release\snake.exe
+C:\Users\Ayhan\Desktop\yılan oyunu\snake\snake\bin\Release\snake.pdb
+C:\Users\Ayhan\Desktop\yılan oyunu\snake\snake\obj\x86\Release\snake.Form1.resources
+C:\Users\Ayhan\Desktop\yılan oyunu\snake\snake\obj\x86\Release\snake.Properties.Resources.resources
+C:\Users\Ayhan\Desktop\yılan oyunu\snake\snake\obj\x86\Release\snake.csproj.GenerateResource.Cache
